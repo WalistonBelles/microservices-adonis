@@ -64,7 +64,7 @@ $ npm run generate
 <br>
 
 <h2> 👨🏾‍💻 Techs </h2>
-<li> Nuxt.Js </li>
+<li> Adonis.js </li>
 <li> Typescript </li>
 <br>
 
