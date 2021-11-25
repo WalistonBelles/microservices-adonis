@@ -1,4 +1,5 @@
-<div style="text-align: center;">
+<div>
+  <center>
   <img src="./assets/logo.png" width="100" alt="adonis">
   
   # Microservices-Adonis
@@ -10,6 +11,7 @@
   ![Badge](https://img.shields.io/github/forks/WalistonBelles/facebook-frontend)
   ![Badge](https://img.shields.io/github/stars/WalistonBelles/facebook-frontend)
   ![Badge](https://img.shields.io/apm/l/vim-mode)
+  </center>
 </div>
 <br>
 <h2> 🍸 Authentication Service </h2>
