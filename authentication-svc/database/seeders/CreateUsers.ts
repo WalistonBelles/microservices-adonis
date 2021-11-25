@@ -6,18 +6,27 @@ export default class CreateUsersSeeder extends BaseSeeder {
     await User.createMany([
       {
         email: 'admin@adonis.io',
+        name: 'admin',
         password: 'secret',
         role: 'admin'
       },
       {
-        email: 'moderador@adonis.io',
+        email: 'desenvolvedor@adonis.io',
+        name: 'desenvolvedor',
         password: 'secret',
-        role: 'moderador'
+        role: 'desenvolvedor'
       },
       {
-        email: 'normal@adonis.io',
+        email: 'analista@adonis.io',
+        name: 'analista',
         password: 'secret',
-        role: 'normal'
+        role: 'analista'
+      },
+      {
+        email: 'cliente@adonis.io',
+        name: 'cliente',
+        password: 'secret',
+        role: 'cliente'
       },
     ])
   }

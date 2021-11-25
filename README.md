@@ -71,6 +71,16 @@ $ npm run start
 
 <br>
 
+<h2> 🕵🏾‍♂️  Routes Authorization Service </h2>
+
+| METHOD | ENDPOINT                 | DESCRIPTION                        |
+| :----- | :----------------------- | :--------------------------------- |
+| GET    | /permission              | List all permissions               |
+| POST   | /permission/register     | Create new permission              |
+| POST   | /permissionUser/register | Associate a permission with a user |
+
+<br>
+
 <h2> 👨🏾‍💻 Techs </h2>
 <li> Adonis.js </li>
 <li> Typescript </li>
