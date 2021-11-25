@@ -4,13 +4,14 @@
   
   # Microservices-Adonis
 
-  Um projeto para estudo de construção e consumo microserviços utilizando Adonis.js e Typescript
-  <br>
+Um projeto para estudo de construção e consumo microserviços utilizando Adonis.js e Typescript
+<br>
 
-  ![Badge](https://img.shields.io/github/issues/WalistonBelles/facebook-frontend?color=green)
-  ![Badge](https://img.shields.io/github/forks/WalistonBelles/facebook-frontend)
-  ![Badge](https://img.shields.io/github/stars/WalistonBelles/facebook-frontend)
-  ![Badge](https://img.shields.io/apm/l/vim-mode)
+![Badge](https://img.shields.io/github/issues/WalistonBelles/facebook-frontend?color=green)
+![Badge](https://img.shields.io/github/forks/WalistonBelles/facebook-frontend)
+![Badge](https://img.shields.io/github/stars/WalistonBelles/facebook-frontend)
+![Badge](https://img.shields.io/apm/l/vim-mode)
+
   </center>
 </div>
 <br>
@@ -20,18 +21,23 @@
 # go to authentication-svc
 $ cd authentication-svc
 
+# Create container with MySQL
+$ docker-compose up -d
+
+# Create your .env file using .env.example as an example
+
 # install dependencies
 $ npm install
 
-# serve with hot reload at localhost:3000
+# Create database structure
+$ node ace migration:run
+
+# server with changes watcher
 $ npm run dev
 
 # build for production and launch server
 $ npm run build
 $ npm run start
-
-# generate static project
-$ npm run generate
 ```
 
 <h2> 🍸 Authorization Service </h2>
@@ -40,26 +46,28 @@ $ npm run generate
 # go to authorization-svc
 $ cd authorization-svc
 
+# Create your .env file using .env.example as an example
+
 # install dependencies
 $ npm install
 
-# serve with hot reload at localhost:3000
+# Create database structure
+$ node ace migration:run
+
+# server with changes watcher
 $ npm run dev
 
 # build for production and launch server
 $ npm run build
 $ npm run start
-
-# generate static project
-$ npm run generate
 ```
 
 <h2> 🕵🏾‍♂️  Routes Authentication Service </h2>
 
-| METHOD           | ENDPOINT      | DESCRIPTION |
-| :---            | :---  | :--- |
-| POST          | /auth       | Login |
-| DELETE       | /auth        | Logout |
+| METHOD | ENDPOINT | DESCRIPTION |
+| :----- | :------- | :---------- |
+| POST   | /auth    | Login       |
+| DELETE | /auth    | Logout      |
 
 <br>
 

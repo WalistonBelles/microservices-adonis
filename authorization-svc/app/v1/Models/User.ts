@@ -1,6 +1,13 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
-import { column, beforeSave, BaseModel } from '@ioc:Adonis/Lucid/Orm'
+import {
+  column,
+  beforeSave,
+  BaseModel,
+  manyToMany,
+  ManyToMany
+} from '@ioc:Adonis/Lucid/Orm'
+import Permission from 'App/Models/Permission'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -15,6 +22,9 @@ export default class User extends BaseModel {
   @column()
   public rememberMeToken?: string
 
+  @column()
+  public role: 'admin' | 'moderador' | 'normal'
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
@@ -27,4 +37,13 @@ export default class User extends BaseModel {
       user.password = await Hash.make(user.password)
     }
   }
+
+  @manyToMany(() => Permission, {
+    localKey: 'id',
+    pivotForeignKey: 'user_id',
+    relatedKey: 'id',
+    pivotRelatedForeignKey: 'permission_id',
+  })
+  public permissions: ManyToMany<typeof Permission>
+
 }
