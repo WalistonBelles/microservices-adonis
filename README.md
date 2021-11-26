@@ -1,10 +1,9 @@
-<div>
-  <center>
+<div align="center">
   <img src="./assets/logo.png" width="100" alt="adonis">
-  
-  # Microservices-Adonis
 
-Um projeto para estudo de construção e consumo microserviços utilizando Adonis.js e Typescript
+# Microservices-Adonis
+
+Um projeto para estudo de construção e consumo de microserviços de Autenticação e Autorização utilizando Adonis.js e Typescript
 <br>
 
 ![Badge](https://img.shields.io/github/issues/WalistonBelles/facebook-frontend?color=green)
@@ -12,10 +11,10 @@ Um projeto para estudo de construção e consumo microserviços utilizando Adoni
 ![Badge](https://img.shields.io/github/stars/WalistonBelles/facebook-frontend)
 ![Badge](https://img.shields.io/apm/l/vim-mode)
 
-  </center>
 </div>
 <br>
-<h2> 🍸 Authentication Service </h2>
+
+<h2> 🍸 Authentication Service Build</h2>
 
 ```bash
 # go to authentication-svc
@@ -32,6 +31,9 @@ $ npm install
 # Create database structure
 $ node ace migration:run
 
+#optional (create initial users)
+$ node ace db:seed
+
 # server with changes watcher
 $ npm run dev
 
@@ -40,7 +42,7 @@ $ npm run build
 $ npm run start
 ```
 
-<h2> 🍸 Authorization Service </h2>
+<h2> 🍸 Authorization Service Build</h2>
 
 ```bash
 # go to authorization-svc
@@ -64,10 +66,14 @@ $ npm run start
 
 <h2> 🕵🏾‍♂️  Routes Authentication Service </h2>
 
-| METHOD | ENDPOINT | DESCRIPTION |
-| :----- | :------- | :---------- |
-| POST   | /auth    | Login       |
-| DELETE | /auth    | Logout      |
+| METHOD | ENDPOINT               | DESCRIPTION                       |
+| :----- | :--------------------- | :-------------------------------- |
+| POST   | /auth                  | Login                             |
+| DELETE | /auth                  | Logout                            |
+| POST   | /user/register         | Create Account                    |
+| PUT    | /user/register         | Validate Account                  |
+| POST   | /user/recover-password | Generate Token to Recover Account |
+| PUT    | /user/recover-password | Use token and recover password    |
 
 <br>
 

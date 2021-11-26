@@ -20,6 +20,8 @@ export default class AuthController {
       message.subject('Recuperação de Senha')
       message.htmlView('emails/account/recover-password', { key })
     });
+
+    return { message: 'Foi enviado um token para o seu email para recuperar sua senha.' }
   }
 
   public async update({ request }: HttpContextContract) {
@@ -27,15 +29,22 @@ export default class AuthController {
 
     const userKey = await UserKey.findByOrFail('key', key)
 
+    const user = await userKey.related('user').query().firstOrFail();
+
     userKey.load('user')
 
-    console.log(password)
+    user.merge({ password })
 
-    userKey.user.merge({ password })
-
-    await userKey.user.save()
+    await user.save()
 
     await userKey.delete()
+
+    await Mail.send((message) => {
+      message.to(user.email)
+      message.from('no-reply@superia.com', 'Superia')
+      message.subject('Alteração de Dados')
+      message.htmlView('emails/account/changed-password')
+    });
 
     return { message: 'Senha alterada com sucesso!' }
   }
