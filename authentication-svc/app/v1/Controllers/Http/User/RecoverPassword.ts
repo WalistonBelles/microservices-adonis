@@ -5,7 +5,7 @@ import faker from 'faker'
 import Mail from '@ioc:Adonis/Addons/Mail'
 
 export default class AuthController {
-  public async store({ request }: HttpContextContract) {
+  public async store({ request, response }: HttpContextContract) {
     const { email } = await request.validate(StoreValidator);
 
     const user = await User.findByOrFail('email', email)
@@ -21,10 +21,12 @@ export default class AuthController {
       message.htmlView('emails/account/recover-password', { key })
     });
 
-    return { message: 'Foi enviado um token para o seu email para recuperar sua senha.' }
+    return response.status(201).send({
+      message: 'Foi enviado um token para o seu email para recuperar sua senha.!'
+    })
   }
 
-  public async update({ request }: HttpContextContract) {
+  public async update({ request, response }: HttpContextContract) {
     const { key, password } = await request.validate(UpdateValidator)
 
     const userKey = await UserKey.findByOrFail('key', key)
@@ -46,6 +48,8 @@ export default class AuthController {
       message.htmlView('emails/account/changed-password')
     });
 
-    return { message: 'Senha alterada com sucesso!' }
+    return response.status(201).send({
+      message: 'Senha alterada com sucesso!'
+    })
   }
 }

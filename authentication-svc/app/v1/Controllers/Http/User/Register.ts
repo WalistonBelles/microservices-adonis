@@ -6,8 +6,8 @@ import Mail from '@ioc:Adonis/Addons/Mail'
 import Database from '@ioc:Adonis/Lucid/Database'
 
 export default class AuthController {
-  public async store({ request }: HttpContextContract) {
-    await Database.transaction(async (trx) => {
+  public async store({ request, response }: HttpContextContract) {
+    const result = await Database.transaction(async (trx) => {
       const { email, redirectUrl } = await request.validate(StoreValidator);
       const user = new User();
 
@@ -29,7 +29,13 @@ export default class AuthController {
         message.subject('Criação de Conta')
         message.htmlView('emails/account/register', { link })
       })
+
+      return email;
     });
+
+    return response.status(201).send({
+      message: `Foi enviado um e-mail de autenticação para ${result}`
+    })
   }
 
   public async update({ request, response }: HttpContextContract) {
@@ -46,6 +52,8 @@ export default class AuthController {
 
     await userKey.delete();
 
-    return response.ok({ message: 'Ok' });
+    return response.status(201).send({
+      message: 'Seus dados foram alterados com sucesso'
+    })
   }
 }
