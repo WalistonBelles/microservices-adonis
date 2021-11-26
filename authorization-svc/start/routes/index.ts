@@ -3,4 +3,4 @@ import './permission'
 
 Route.get('/', async () => {
   return { hello: 'world' }
-})
+}).middleware(['acl: admin', 'auth'])

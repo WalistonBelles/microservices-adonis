@@ -79,11 +79,14 @@ $ npm run start
 
 <h2> 🕵🏾‍♂️  Routes Authorization Service </h2>
 
-| METHOD | ENDPOINT                 | DESCRIPTION                        |
-| :----- | :----------------------- | :--------------------------------- |
-| GET    | /permission              | List all permissions               |
-| POST   | /permission/register     | Create new permission              |
-| POST   | /permissionUser/register | Associate a permission with a user |
+| METHOD | ENDPOINT                   | DESCRIPTION                           |
+| :----- | :------------------------- | :------------------------------------ |
+| GET    | /permission                | List all permissions                  |
+| PUT    | /permission                | Update permission                     |
+| DELETE | /permission/:id            | Delete permission                     |
+| POST   | /permission/register       | Create new permission                 |
+| POST   | /permissionUser/register   | Associate a permission with a user    |
+| DELETE | /permissionUser/remove/:id | Disassociate a permission with a user |
 
 <br>
 

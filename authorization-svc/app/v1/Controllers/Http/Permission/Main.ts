@@ -1,24 +1,30 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { StoreValidator } from 'App/Validators/Permission'
 import Permission from 'App/Models/Permission'
+import { UpdateValidator } from 'App/Validators/Permission'
 
 export default class PermissionsController {
-  public async index({ auth }: HttpContextContract) {
+  public async index({}: HttpContextContract) {
     const permission = await Permission.query().orderBy('id', 'asc')
     return permission;
   }
 
-  public async create({}: HttpContextContract) {}
+  public async update({ request, response }: HttpContextContract) {
 
-  public async store({}: HttpContextContract) {}
+    const { name, new_name } = await request.validate(UpdateValidator);
 
-  public async show({}: HttpContextContract) {}
+    const permission = await Permission.findByOrFail('name', name);
 
-  public async edit({}: HttpContextContract) {}
+    permission.merge({ name: new_name });
 
-  public async update({ }: HttpContextContract) {
+    await permission.save();
 
+    return response.status(201).send({
+      message: 'Permissão atualizada'
+    })
   }
 
-  public async destroy({}: HttpContextContract) {}
+  public async destroy({ params }: HttpContextContract) {
+    const permission = await Permission.findOrFail(params.id);
+    permission.delete()
+  }
 }
